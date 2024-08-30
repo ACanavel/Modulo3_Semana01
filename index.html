@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Funciones y Control de Flujo</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="brand">JavaScript</h1>
+            <ul class="nav-links">
+                <li><a href="#intro">Introducción</a></li>
+                <li><a href="#functions">Funciones</a></li>
+                <li><a href="#control-flow">Control de Flujo</a></li>
+                <li><a href="#logical-conditions">Condiciones Lógicas</a></li>
+                <li><a href="#weekly-summary">Resumen Semanal</a></li>
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle dark/light theme">
+                        <span id="theme-icon">🌞</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h2>Aprende JavaScript de manera efectiva</h2>
+            <p>Domina funciones, control de flujo y evaluación de condiciones lógicas con ejemplos prácticos y enlaces a documentación oficial.</p>
+            <a href="#intro" class="cta">Comenzar</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="intro" class="card">
+            <h2>Introducción a JavaScript</h2>
+            <p>JavaScript es el lenguaje de programación fundamental para el desarrollo web. Con él, puedes crear interactividad en las páginas web, controlando el comportamiento de los elementos de la interfaz. En esta guía, cubriremos aspectos cruciales como funciones, control de flujo y evaluación de condiciones lógicas.</p>
+            <a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank" class="external-link">Documentación Oficial de JavaScript en MDN</a>
+        </section>
+
+        <section id="functions" class="card">
+            <h2>Funciones en JavaScript</h2>
+            <p>Las funciones son bloques de código que realizan una tarea específica y se pueden reutilizar en todo el programa. Es esencial entender cómo declararlas, invocarlas y utilizarlas para escribir código eficiente y organizado.</p>
+            
+            <h3>Declaración de Funciones</h3>
+            <p>Una función en JavaScript se puede declarar de varias formas:</p>
+            <ul>
+                <li><strong>Función clásica:</strong> Es la forma más común de declarar una función.</li>
+                <li><strong>Función anónima:</strong> Funciones que no tienen nombre y se pueden asignar a variables.</li>
+                <li><strong>Funciones flecha (Arrow Functions):</strong> Introducidas en ES6, son una sintaxis más concisa para escribir funciones.</li>
+            </ul>
+            <button onclick="toggleExample('functionDeclarationExample')">Mostrar Ejemplo de Declaración</button>
+            <pre id="functionDeclarationExample" class="code">
+            function saludar(nombre) {
+                return `Hola, ${nombre}!`;
+            }
+
+            const despedir = function(nombre) {
+                return `Adiós, ${nombre}!`;
+            };
+
+            const sumar = (a, b) => a + b;
+
+            console.log(saludar('Estudiante')); // Salida: Hola, Estudiante!
+            console.log(despedir('Estudiante')); // Salida: Adiós, Estudiante!
+            console.log(sumar(5, 3)); // Salida: 8
+            </pre>
+            
+            <h3>Funciones de Orden Superior</h3>
+            <p>Las funciones de orden superior son funciones que pueden aceptar otras funciones como argumentos o devolverlas como resultados. Estas son fundamentales en la programación funcional y se usan comúnmente en métodos como <code>map</code>, <code>filter</code> y <code>reduce</code>.</p>
+            <button onclick="toggleExample('higherOrderExample')">Mostrar Ejemplo de Función de Orden Superior</button>
+            <pre id="higherOrderExample" class="code">
+            function aplicarOperacion(arr, operacion) {
+                return arr.map(operacion);
+            }
+
+            const duplicar = x => x * 2;
+            console.log(aplicarOperacion([1, 2, 3], duplicar)); // Salida: [2, 4, 6]
+            </pre>
+
+            <h3>Callbacks</h3>
+            <p>Un callback es una función que se pasa a otra función como argumento y se ejecuta después de que se haya completado alguna operación. Los callbacks son esenciales para manejar la asincronía en JavaScript.</p>
+            <button onclick="toggleExample('callbackExample')">Mostrar Ejemplo de Callback</button>
+            <pre id="callbackExample" class="code">
+            function saludar(nombre, callback) {
+                console.log(`Hola, ${nombre}`);
+                callback();
+            }
+
+            function despedir() {
+                console.log('Adiós!');
+            }
+
+            saludar('Estudiante', despedir);
+            // Salida:
+            // Hola, Estudiante
+            // Adiós!
+            </pre>
+            <a href="https://developer.mozilla.org/es/docs/Glossary/Callback_function" target="_blank" class="external-link">Más sobre Callbacks en JavaScript</a>
+        </section>
+
+        <section id="control-flow" class="card">
+            <h2>Control de Flujo</h2>
+            <p>El control de flujo permite dirigir el orden de ejecución de las instrucciones en un programa. En JavaScript, utilizamos estructuras como <code>if</code>, <code>else</code>, <code>for</code>, y <code>switch</code> para tomar decisiones y repetir tareas.</p>
+            
+            <h3>Condicionales</h3>
+            <p>Las estructuras condicionales permiten que tu programa tome decisiones en tiempo de ejecución:</p>
+            <ul>
+                <li><strong>if:</strong> Evalúa una condición y, si es verdadera, ejecuta un bloque de código.</li>
+                <li><strong>else:</strong> Se ejecuta si la condición <code>if</code> no es verdadera.</li>
+                <li><strong>else if:</strong> Permite evaluar múltiples condiciones.</li>
+                <li><strong>switch:</strong> Evalúa una expresión y ejecuta el bloque de código que coincide con su valor.</li>
+            </ul>
+            <button onclick="toggleExample('conditionalsExample')">Mostrar Ejemplo de Condicionales</button>
+            <pre id="conditionalsExample" class="code">
+            let dia = 'lunes';
+
+            if (dia === 'lunes') {
+                console.log('Es lunes, inicio de la semana.');
+            } else if (dia === 'viernes') {
+                console.log('Es viernes, casi fin de semana.');
+            } else {
+                console.log('Es otro día de la semana.');
+            }
+
+            let fruta = 'manzana';
+
+            switch(fruta) {
+                case 'manzana':
+                    console.log('Es una manzana.');
+                    break;
+                case 'banana':
+                    console.log('Es una banana.');
+                    break;
+                default:
+                    console.log('Es otra fruta.');
+            }
+            </pre>
+
+            <h3>Bucles</h3>
+            <p>Los bucles permiten repetir una acción varias veces. En JavaScript, hay varios tipos de bucles:</p>
+            <ul>
+                <li><strong>for:</strong> Itera un número específico de veces.</li>
+                <li><strong>while:</strong> Itera mientras una condición sea verdadera.</li>
+                <li><strong>do...while:</strong> Ejecuta primero, luego verifica la condición.</li>
+            </ul>
+            <button onclick="toggleExample('loopsExample')">Mostrar Ejemplo de Bucles</button>
+            <pre id="loopsExample" class="code">
+            for (let i = 0; i < 5; i++) {
+                console.log(`Iteración ${i}`);
+            }
+
+            let j = 0;
+            while (j < 3) {
+                console.log(`While loop, iteración ${j}`);
+                j++;
+            }
+
+            let k = 0;
+            do {
+                console.log(`Do...while loop, iteración ${k}`);
+                k++;
+            } while (k < 2);
+            </pre>
+
+            <h3>Manejo de Errores con try-catch</h3>
+            <p>El bloque <code>try-catch</code> se utiliza para manejar errores que puedan ocurrir durante la ejecución del código. Es una forma efectiva de prevenir que un error detenga la ejecución del programa.</p>
+            <button onclick="toggleExample('tryCatchExample')">Mostrar Ejemplo de try-catch</button>
+            <pre id="tryCatchExample" class="code">
+            try {
+                let resultado = 10 / 0;
+                if (resultado === Infinity) {
+                    throw new Error('División por cero');
+                }
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
+            // Salida: Error: División por cero
+            </pre>
+            <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" class="external-link">Más sobre try-catch en JavaScript</a>
+        </section>
+
+        <section id="logical-conditions" class="card">
+            <h2>Evaluación de Condiciones Lógicas</h2>
+            <p>Las condiciones lógicas se utilizan para tomar decisiones en base a expresiones booleanas. Los operadores lógicos como <code>&&</code> (AND), <code>||</code> (OR), y <code>!</code> (NOT) son fundamentales para evaluar estas condiciones.</p>
+            
+            <h3>Operadores Lógicos</h3>
+            <p>Los operadores lógicos permiten combinar varias condiciones y evaluarlas en conjunto. Aquí tienes los más comunes:</p>
+            <ul>
+                <li><strong>&& (AND):</strong> Devuelve verdadero si ambas condiciones son verdaderas.</li>
+                <li><strong>|| (OR):</strong> Devuelve verdadero si al menos una de las condiciones es verdadera.</li>
+                <li><strong>! (NOT):</strong> Invierte el valor de una condición.</li>
+            </ul>
+            <button onclick="toggleExample('logicalOperatorsExample')">Mostrar Ejemplo de Operadores Lógicos</button>
+            <pre id="logicalOperatorsExample" class="code">
+        let tieneLicencia = true;
+        let sabeConducir = false;
+        
+        if (tieneLicencia && sabeConducir) {
+            console.log('Puedes conducir el coche');
+        } else {
+            console.log('No puedes conducir el coche');
+        }
+        
+        let esNovato = !sabeConducir;
+        console.log(esNovato); // Salida: true
+            </pre>
+        
+            <h3>Operador Ternario</h3>
+            <p>El operador ternario es una forma concisa de realizar evaluaciones condicionales en una sola línea. Es ideal para situaciones en las que necesitas asignar un valor basado en una condición simple.</p>
+            <button onclick="toggleExample('ternaryOperatorExample')">Mostrar Ejemplo de Operador Ternario</button>
+            <pre id="ternaryOperatorExample" class="code">
+        let esMayorDeEdad = true;
+        let mensaje = esMayorDeEdad ? 'Puedes votar' : 'No puedes votar';
+        console.log(mensaje); // Salida: Puedes votar
+            </pre>
+        
+            <h3>Cortocircuito Lógico</h3>
+            <p>El cortocircuito ocurre cuando JavaScript deja de evaluar expresiones lógicas porque ya ha determinado el resultado:</p>
+            <ul>
+                <li><strong>&& (AND):</strong> Si la primera condición es falsa, no evalúa la segunda.</li>
+                <li><strong>|| (OR):</strong> Si la primera condición es verdadera, no evalúa la segunda.</li>
+            </ul>
+            <button onclick="toggleExample('shortCircuitExample')">Mostrar Ejemplo de Cortocircuito</button>
+            <pre id="shortCircuitExample" class="code">
+        let estaAutenticado = true;
+        let tieneAccesoAdmin = false;
+        
+        console.log(estaAutenticado && tieneAccesoAdmin); // Salida: false (no evalúa tieneAccesoAdmin)
+        console.log(estaAutenticado || tieneAccesoAdmin); // Salida: true (no evalúa tieneAccesoAdmin)
+            </pre>
+        
+            <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_lógicos" target="_blank" class="external-link">Más sobre operadores lógicos y el operador ternario</a>
+        </section>
+        
+
+        <section id="weekly-summary" class="card">
+            <h2>Resumen Semanal</h2>
+            <p>Esta semana hemos profundizado en temas esenciales de JavaScript, que son fundamentales para el desarrollo web. A continuación, se ofrece un resumen detallado de cada tema.</p>
+
+            <div class="weekly-grid">
+                <div class="weekly-item">
+                    <h3>Funciones</h3>
+                    <p>Las funciones en JavaScript son piezas clave para estructurar el código de manera modular y reutilizable. Vimos cómo declararlas, los diferentes tipos de funciones y su uso en JavaScript.</p>
+                    <p><strong>Funciones de Orden Superior:</strong> Estas funciones aceptan otras funciones como parámetros o las devuelven como resultados. Son cruciales para la programación funcional y son ampliamente utilizadas en métodos como <code>map</code>, <code>filter</code> y <code>reduce</code>.</p>
+                    <p><strong>Callbacks:</strong> Los callbacks son funciones que se pasan como argumentos y se ejecutan después de que se haya completado alguna operación. Son esenciales para manejar la asincronía en JavaScript.</p>
+                    <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Functions" target="_blank" class="external-link">Lee más sobre funciones en JavaScript</a>
+                </div>
+
+                <div class="weekly-item">
+                    <h3>Operadores Lógicos</h3>
+                    <p>Los operadores lógicos nos permiten combinar y evaluar múltiples condiciones. Vimos el uso de `&&`, `||`, `!` y el operador ternario (`? :`) para tomar decisiones rápidas y eficaces en el código.</p>
+                    <p><strong>Operador Ternario:</strong> Es una forma concisa de realizar evaluaciones condicionales simples en una sola línea. Es útil para asignaciones rápidas sin necesidad de una estructura `if-else` completa.</p>
+                    <p>Además, exploramos el concepto de cortocircuito, donde `&&` y `||` detienen la evaluación tan pronto como se determina el resultado de la expresión, optimizando el rendimiento.</p>
+                    <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators#operadores_lógicos" target="_blank" class="external-link">Lee más sobre operadores lógicos y el operador ternario</a>
+                </div>
+
+                <div class="weekly-item">
+                    <h3>Control de Flujo</h3>
+                    <p>El control de flujo en JavaScript permite ejecutar código de manera condicional o repetitiva. Estudiamos estructuras condicionales como `if`, `else`, `switch` y bucles como `for`, `while`, y `do...while`.</p>
+                    <p><strong>Manejo de Errores con try-catch:</strong> El bloque `try-catch` es una herramienta fundamental para manejar errores en tiempo de ejecución, permitiendo que el código continúe ejecutándose a pesar de los errores.</p>
+                    <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" class="external-link">Lee más sobre try-catch en JavaScript</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024  Todos los derechos reservados.Realizado por AleCanache.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
